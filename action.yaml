@@ -247,8 +247,7 @@ runs:
             if: inputs.database == 'postgresql'
             run: |
                 bin/console doctrine:database:create --if-not-exists -vvv
-                bin/console doctrine:schema:up --force -vvv
-                bin/console doctrine:schema:validate
+                bin/console doctrine:migrations:migrate -n -vvv
                 bin/console doctrine:migrations:sync-metadata-storage
             shell: bash
             working-directory: "${{ env.application_dir }}"
